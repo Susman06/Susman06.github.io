@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Usman Naeem's automation workflows and AI/ML projects built with n8n, Zapier, Vapi, Shopify, Apify, HubSpot, and Python.">
+    <meta name="keywords" content="n8n workflows, Zapier automation, AI ML projects, Vapi voice agent, Shopify automation, Apify scraping, HubSpot CRM, email classifier, heart disease prediction">
+    <meta name="author" content="Usman Naeem">
+    <link rel="icon" type="image/png" href="images/Favicon.png">
+
+    <title>Projects | Usman Naeem - Automation & AI/ML Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <header class="navbar" id="navbar">
+        <nav class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">Usman</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link cta-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content animate-fade-up">
+                <span class="section-tag">Portfolio</span>
+                <h1 class="page-title">My <span class="gradient-text">Projects</span></h1>
+                <p class="page-subtitle">
+                    Real automation workflows, AI-powered agents, and machine learning models 
+                    I've built — no dummy or fictional work.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FILTER TABS ==================== -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="n8n">n8n Workflows</button>
+                <button class="filter-btn" data-filter="zapier">Zapier Automations</button>
+                <button class="filter-btn" data-filter="aiml">AI / ML</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROJECTS GRID ==================== -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid" id="projectsGrid">
+
+                <!-- ===== N8N PROJECT 1: Vapi Voice Agent ===== -->
+                <article class="project-card animate-fade-up" data-category="n8n" style="--delay: 0.1s">
+                    <div class="project-image">
+                        <!-- REPLACE src with your actual image file name -->
+                        <img 
+                            src="images/projects/VoiceAgent.png" 
+                            alt="Vapi and n8n Voice Call Agent Workflow Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge">n8n</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Vapi + n8n Voice Call Agent — Restaurant Order & Support</h3>
+                        <p class="project-description">
+                            Built an AI-powered voice call agent using <strong>Vapi</strong> integrated with 
+                            <strong>n8n</strong> to handle restaurant customer support and order management 
+                            through phone calls. Uses custom <strong>Code nodes</strong> to verify caller 
+                            details, validate menu items, and process orders. All data stored in 
+                            <strong>Airtable</strong> with automated confirmation emails.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">n8n</span>
+                            <span class="tool-tag">Vapi</span>
+                            <span class="tool-tag">Airtable</span>
+                            <span class="tool-tag">Code Nodes</span>
+                            <span class="tool-tag">Email</span>
+                            <span class="tool-tag">Webhooks</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== N8N PROJECT 2: Shopify Automation ===== -->
+                <article class="project-card animate-fade-up" data-category="n8n" style="--delay: 0.2s">
+                    <div class="project-image">
+                        <img 
+                            src="images/projects/Shopify2.png" 
+                            alt="Shopify Order and Customer Management Workflow Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge">n8n</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Shopify Order & Customer Management with Daily Reports</h3>
+                        <p class="project-description">
+                            Comprehensive <strong>n8n workflow</strong> automating Shopify store management. 
+                            Pulls customer and order data, validates and checks duplicates via 
+                            <strong>Code nodes</strong>, auto-tags orders/customers by buying behavior, 
+                            stores clean data in <strong>Google Sheets</strong>, and sends daily email 
+                            reports covering earnings, items sold, and inventory alerts.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">n8n</span>
+                            <span class="tool-tag">Shopify API</span>
+                            <span class="tool-tag">Google Sheets</span>
+                            <span class="tool-tag">Code Nodes</span>
+                            <span class="tool-tag">Cron</span>
+                            <span class="tool-tag">Email</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== N8N PROJECT 3: Multi-Agent Scraper ===== -->
+                <article class="project-card animate-fade-up" data-category="n8n" style="--delay: 0.3s">
+                    <div class="project-image">
+                        <img 
+                            src="images/projects/Scraping.png" 
+                            alt="Multi-Agent Instagram TikTok Scraping Workflow Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge">n8n</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Multi-Agent Instagram & TikTok Scraper + AI Content Generator</h3>
+                        <p class="project-description">
+                            Multi-agent <strong>n8n workflow</strong> using <strong>Apify</strong> to scrape 
+                            high-performing posts from <strong>Instagram</strong> and <strong>TikTok</strong>. 
+                            Agents handle scraping, cleaning, video transcription, and content analysis. 
+                            Final agent generates original post ideas with captions and hashtags using 
+                            <strong>OpenAI</strong>.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">n8n</span>
+                            <span class="tool-tag">Apify</span>
+                            <span class="tool-tag">Multi-Agent</span>
+                            <span class="tool-tag">OpenAI</span>
+                            <span class="tool-tag">Instagram</span>
+                            <span class="tool-tag">TikTok</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== N8N PROJECT 4: HubSpot Form ===== -->
+                <article class="project-card animate-fade-up" data-category="n8n" style="--delay: 0.4s">
+                    <div class="project-image">
+                        <img 
+                            src="images/projects/4.jpeg" 
+                            alt="Website Form to HubSpot CRM Automation Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge">n8n</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Website Form to HubSpot CRM Automation</h3>
+                        <p class="project-description">
+                            <strong>n8n workflow</strong> capturing website form submissions via 
+                            <strong>webhooks</strong>, validating data, checking for duplicates, and 
+                            creating/updating contacts in <strong>HubSpot CRM</strong> with proper 
+                            lifecycle stages and lead sources assigned automatically.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">n8n</span>
+                            <span class="tool-tag">HubSpot CRM</span>
+                            <span class="tool-tag">Webhooks</span>
+                            <span class="tool-tag">API Integration</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== ZAPIER PROJECT 1: Stripe to HubSpot ===== -->
+                <article class="project-card animate-fade-up" data-category="zapier" style="--delay: 0.1s">
+                    <div class="project-image">
+                        <img 
+                            src="images/projects/Stripe.png" 
+                            alt="Stripe Payment to HubSpot CRM Zapier Automation Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge badge-zapier">Zapier</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Stripe Payment to HubSpot CRM — Classification & Follow-up</h3>
+                        <p class="project-description">
+                            <strong>Zapier automation</strong> triggering on <strong>Stripe</strong> payments, 
+                            syncing customers to <strong>HubSpot CRM</strong>, classifying them by purchased 
+                            plan, segmenting contacts, and sending welcome emails with scheduled follow-up 
+                            sequences for onboarding.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Zapier</span>
+                            <span class="tool-tag">Stripe</span>
+                            <span class="tool-tag">HubSpot CRM</span>
+                            <span class="tool-tag">Email Sequences</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== ZAPIER PROJECT 2: Monday CRM ===== -->
+                <article class="project-card animate-fade-up" data-category="zapier" style="--delay: 0.2s">
+                    <div class="project-image">
+                        <img 
+                            src="images/projects/Monday.png" 
+                            alt="Forms to Monday.com CRM Zapier Automation Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge badge-zapier">Zapier</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Forms to Monday.com CRM Automation</h3>
+                        <p class="project-description">
+                            <strong>Zapier workflow</strong> capturing form submissions and creating items 
+                            in <strong>Monday.com CRM</strong> with all fields mapped — contact name, 
+                            email, inquiry type, and priority. Ensures no lead is missed and teams can 
+                            act on inquiries instantly.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Zapier</span>
+                            <span class="tool-tag">Monday.com</span>
+                            <span class="tool-tag">Google Forms</span>
+                            <span class="tool-tag">Lead Management</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== ZAPIER PROJECT 3: AI Content Writer ===== -->
+                <article class="project-card animate-fade-up" data-category="zapier" style="--delay: 0.3s">
+                    <div class="project-image">
+                        <img 
+                            src="assets/images/projects/ai-content-writer.png" 
+                            alt="AI Content Writer WordPress Zapier Automation Screenshot" 
+                            loading="lazy"
+                        >
+                        <span class="project-badge badge-zapier">Zapier</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">AI Content Writer for WordPress Website</h3>
+                        <p class="project-description">
+                            <strong>Zapier-powered AI automation</strong> that generates SEO-optimized 
+                            blog posts using <strong>OpenAI/ChatGPT</strong> and publishes them directly 
+                            to <strong>WordPress</strong> — complete with headings, meta descriptions, 
+                            and tags. Dramatically reduces content production time.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Zapier</span>
+                            <span class="tool-tag">OpenAI</span>
+                            <span class="tool-tag">WordPress</span>
+                            <span class="tool-tag">SEO</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== AI/ML PROJECT 1: Email Classifier (ICON CARD) ===== -->
+                <article class="project-card project-card-icon animate-fade-up" data-category="aiml" style="--delay: 0.1s">
+                    <div class="project-icon-header">
+                        <div class="project-icon-circle">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M22 4L12 13 2 4"/>
+                            </svg>
+                        </div>
+                        <span class="project-badge-inline badge-ai">AI / ML</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Email Classifier & Auto-Responder System</h3>
+                        <p class="project-description">
+                            <strong>Machine learning project</strong> that classifies incoming emails into 
+                            categories (spam, support, inquiry, complaint) using <strong>Naive Bayes</strong> 
+                            with TF-IDF vectorization. Built with <strong>Python</strong>, 
+                            <strong>Pandas</strong>, and <strong>Scikit-learn</strong>. Includes text 
+                            preprocessing, model training, and auto-response generation based on 
+                            predicted category.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Naive Bayes</span>
+                            <span class="tool-tag">Pandas</span>
+                            <span class="tool-tag">Scikit-learn</span>
+                            <span class="tool-tag">TF-IDF</span>
+                            <span class="tool-tag">NLP</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== AI/ML PROJECT 2: Heart Disease (ICON CARD) ===== -->
+                <article class="project-card project-card-icon animate-fade-up" data-category="aiml" style="--delay: 0.2s">
+                    <div class="project-icon-header">
+                        <div class="project-icon-circle">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </div>
+                        <span class="project-badge-inline badge-ai">AI / ML</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Heart Disease Classifier & Solution Recommender</h3>
+                        <p class="project-description">
+                            <strong>Classification model</strong> predicting heart disease likelihood using 
+                            patient health data. Built with <strong>Scikit-learn</strong> comparing 
+                            Logistic Regression, Random Forest, and Decision Trees. Includes 
+                            <strong>EDA</strong>, feature engineering, and provides health 
+                            recommendations based on identified risk factors.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Scikit-learn</span>
+                            <span class="tool-tag">Pandas</span>
+                            <span class="tool-tag">Matplotlib</span>
+                            <span class="tool-tag">Seaborn</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ===== AI/ML PROJECT 3: GYM Analyzer (ICON CARD) ===== -->
+                <article class="project-card project-card-icon animate-fade-up" data-category="aiml" style="--delay: 0.3s">
+                    <div class="project-icon-header">
+                        <div class="project-icon-circle">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 20V10M12 20V4M6 20v-6"/>
+                            </svg>
+                        </div>
+                        <span class="project-badge-inline badge-ai">AI / ML</span>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">GYM Analyzer & Fitness Helper</h3>
+                        <p class="project-description">
+                            <strong>Data analysis and ML-powered fitness assistant</strong> that analyzes 
+                            workout data to identify trends and muscle imbalances. Uses 
+                            <strong>regression models</strong> to predict optimal loads, estimate calorie 
+                            burn, and suggest personalized adjustments. Built with <strong>Python</strong>, 
+                            <strong>Pandas</strong>, and <strong>Matplotlib</strong> for visualizations.
+                        </p>
+                        <button class="read-more-btn" aria-label="Read more">
+                            <span>Read More</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="project-tools">
+                            <span class="tool-tag">Python</span>
+                            <span class="tool-tag">Pandas</span>
+                            <span class="tool-tag">Scikit-learn</span>
+                            <span class="tool-tag">Matplotlib</span>
+                            <span class="tool-tag">Regression</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Note -->
+            <div class="projects-note animate-fade-up">
+                <div class="note-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                </div>
+                <p>
+                    <strong>Note:</strong> Every project listed here is real work I've personally built. 
+                    <a href="contact.html">Contact me</a> for live demos or detailed walkthroughs.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <span class="logo-text">Usman</span>
+                    </a>
+                    <p>Automation Engineer & AI/ML Practitioner</p>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="mailto:osmannaeem05@gmail.com" class="social-link" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                        </a>
+                        <a href="https://pk.linkedin.com/in/usman-naeem-1217312a8?trk=public_post_feed-actor-name/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://github.com/usmannaeem06" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Usman Naeem. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
