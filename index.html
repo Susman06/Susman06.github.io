@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for SEO and responsiveness -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Usman Naeem - Automation Engineer & AI/ML Practitioner specializing in n8n workflows, Zapier automation, Vapi voice agents, Shopify management, and machine learning solutions.">
@@ -10,20 +9,152 @@
     <meta name="robots" content="index, follow">
     <link rel="icon" type="image/png" href="images/Favicon.png">
 
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Usman Naeem | Automation & AI/ML Portfolio">
     <meta property="og:description" content="Explore automation workflows, AI voice agents, and ML projects by Usman Naeem.">
     <meta property="og:type" content="website">
 
     <title>Usman Naeem | Automation & AI/ML Portfolio</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ================================================
+           TOOLS MARQUEE SECTION
+        ================================================ */
+        .tools-marquee-section {
+            padding: 48px 0;
+            overflow: hidden;
+            position: relative;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tools-marquee-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .tools-marquee-header p {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* The track that holds two sets of items for seamless loop */
+        .marquee-track-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            /* Fade edges */
+            mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            );
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            /* Animation: scrolls one full set width to the left, then resets */
+            animation: marquee-scroll 30s linear infinite;
+            gap: 0;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Each tool pill */
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            margin: 0 6px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 40px;
+            white-space: nowrap;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+            cursor: default;
+            flex-shrink: 0;
+        }
+
+        .marquee-item:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .marquee-item img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Fallback icon when no image */
+        .marquee-item .tool-icon-fallback {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+        }
+
+        .marquee-item span.tool-name {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 0.01em;
+        }
+
+        .marquee-item:hover span.tool-name {
+            color: rgba(255,255,255,0.9);
+        }
+
+        @media (max-width: 640px) {
+            .marquee-item {
+                padding: 8px 16px;
+                gap: 8px;
+            }
+            .marquee-item span.tool-name {
+                font-size: 0.77rem;
+            }
+            .marquee-track {
+                animation-duration: 22s;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -74,9 +205,8 @@
                 <span class="cursor">|</span>
             </p>
 
-            <!-- Updated hero description -->
             <p class="hero-description">
-                    Grow your business by getting rid of repetitive tasks. I build <strong>smart automation systems</strong> that handle your daily work in the background, from managing leads and updating your CRM to running e-commerce processes and <strong>AI-powered automations</strong>. Using <strong>n8n</strong> and <strong>Zapier</strong>, I create reliable systems that save you time, reduce errors, and keep everything running smoothly without constant manual effort.
+                I help businesses get rid of repetitive tasks by building <strong>smart automation systems</strong> — things like managing leads, updating CRMs, running e-commerce processes, and handling <strong>AI-powered workflows</strong>. I work mainly with <strong>n8n</strong> and <strong>Zapier</strong> to build reliable systems that run in the background while you focus on growing your business.
             </p>
 
             <div class="hero-cta">
@@ -115,6 +245,140 @@
         </div>
     </section>
 
+    <!-- ==================== TOOLS MARQUEE ==================== -->
+    <section class="tools-marquee-section" aria-label="Tools and technologies I work with">
+        <div class="tools-marquee-header">
+            <p>Tools & Technologies I Work With</p>
+        </div>
+
+        <div class="marquee-track-wrapper">
+            <div class="marquee-track" id="marqueeTrack">
+
+                <!-- SET 1 — will be duplicated by JS for seamless loop -->
+                <div class="marquee-item">
+                    <img src="images/tools/n8n.png" alt="n8n" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#ea4b71;">n8</span>
+                    <span class="tool-name">n8n</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/zapier.png" alt="Zapier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#ff4a00;">Zp</span>
+                    <span class="tool-name">Zapier</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/make.png" alt="Make.com" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#6d00cc;">Mk</span>
+                    <span class="tool-name">Make.com</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/ghl.png" alt="GoHighLevel" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#0a84ff;">GH</span>
+                    <span class="tool-name">GHL</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/python.png" alt="Python" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#3572a5;">Py</span>
+                    <span class="tool-name">Python</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/pandas.png" alt="Pandas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#150458;">Pd</span>
+                    <span class="tool-name">Pandas</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/sklearn.png" alt="Scikit-learn" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#f89939;">Sk</span>
+                    <span class="tool-name">Scikit-learn</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/hubspot.png" alt="HubSpot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#ff7a59;">Hs</span>
+                    <span class="tool-name">HubSpot</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/monday.png" alt="Monday CRM" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#f65b00;">Mo</span>
+                    <span class="tool-name">Monday CRM</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/gsheets.png" alt="Google Sheets" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#1fa463;">GS</span>
+                    <span class="tool-name">Google Sheets</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/gmail.png" alt="Gmail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#ea4335;">Gm</span>
+                    <span class="tool-name">Gmail</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/sql.png" alt="SQL" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#336791;">SQ</span>
+                    <span class="tool-name">SQL</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/django.png" alt="Django API" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#092e20;">Dj</span>
+                    <span class="tool-name">Django API</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/manychat.png" alt="ManyChat" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#0084ff;">Mc</span>
+                    <span class="tool-name">ManyChat</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/apify.png" alt="Apify" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#00b4d8;">Ap</span>
+                    <span class="tool-name">Apify</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/claude.png" alt="Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#c96442;">Cl</span>
+                    <span class="tool-name">Claude</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/openai.png" alt="OpenAI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#10a37f;">Ai</span>
+                    <span class="tool-name">OpenAI</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/gemini.png" alt="Gemini" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#4285f4;">Ge</span>
+                    <span class="tool-name">Gemini</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/nanobots.png" alt="Nanobots" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#7c3aed;">Nb</span>
+                    <span class="tool-name">Nanobots</span>
+                </div>
+
+                <div class="marquee-item">
+                    <img src="images/tools/wordpress.png" alt="WordPress" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="tool-icon-fallback" style="display:none;background:#21759b;">Wp</span>
+                    <span class="tool-name">WordPress</span>
+                </div>
+
+            </div><!-- end marquee-track -->
+        </div><!-- end marquee-track-wrapper -->
+    </section>
+
     <!-- ==================== EXPERTISE SECTION ==================== -->
     <section class="expertise-section" id="expertise">
         <div class="container">
@@ -122,7 +386,7 @@
                 <span class="section-tag">What I Do</span>
                 <h2 class="section-title">My Core <span class="gradient-text">Expertise</span></h2>
                 <p class="section-subtitle">
-                        From AI voice assistants to e-commerce automation, I create smart solutions that keep your business running smoothly while you sleep, saving you time and letting you focus on what matters most.
+                    From AI voice agents to e-commerce automation — I build systems that keep your business running while you focus on what actually matters.
                 </p>
             </div>
 
@@ -135,7 +399,7 @@
                     </div>
                     <h3 class="card-title">n8n Workflow Automation</h3>
                     <p class="card-description">
-                            I create custom <strong>n8n workflows</strong> that handle multi-step processes for your business, from AI voice assistants and Shopify management to data scraping and CRM integrations. Everything runs automatically with smart triggers in the background, so you don’t have to worry about the details.
+                        I build <strong>n8n workflows</strong> for things like AI voice agents, Shopify order management, data scraping, and CRM syncing — all running automatically in the background with smart triggers.
                     </p>
                     <div class="card-tools">
                         <span class="tool-tag">n8n</span>
@@ -155,7 +419,7 @@
                     </div>
                     <h3 class="card-title">Zapier Automations</h3>
                     <p class="card-description">
-                            I build <strong>Zapier workflows</strong> that automate tasks like payment processing, CRM updates, and content creation, helping your website, store, or business run smoothly without you having to manage everything manually.
+                        I set up <strong>Zapier workflows</strong> for payment processing, CRM updates, content publishing, and more — so your tools talk to each other without you lifting a finger.
                     </p>
                     <div class="card-tools">
                         <span class="tool-tag">Zapier</span>
@@ -174,7 +438,7 @@
                     </div>
                     <h3 class="card-title">AI & Machine Learning</h3>
                     <p class="card-description">
-                        I develop <strong>AI and machine learning solutions</strong> for real-world business needs, from organizing emails and predicting health or fitness outcomes to analyzing business data, so your operations run smarter and more efficiently.
+                        I build <strong>ML models</strong> for real-world problems — email classifiers, health risk predictors, fitness analyzers — using Python and Scikit-learn on actual datasets.
                     </p>
                     <div class="card-tools">
                         <span class="tool-tag">Python</span>
@@ -194,7 +458,7 @@
                 <span class="section-tag">Featured Work</span>
                 <h2 class="section-title">Recent <span class="gradient-text">Projects</span></h2>
                 <p class="section-subtitle">
-                    A glimpse of my latest automation workflows and AI/ML solutions.
+                    A few highlights from my recent automation and AI/ML work.
                 </p>
             </div>
 
@@ -202,7 +466,7 @@
                 <div class="featured-card animate-fade-up" style="--delay: 0.1s">
                     <div class="featured-number">01</div>
                     <h3>Vapi + n8n Voice Call Agent</h3>
-                    <p>AI-powered restaurant order & customer support system with Airtable storage and automated emails.</p>
+                    <p>AI voice agent handling restaurant orders and customer support, with Airtable storage and automated confirmation emails.</p>
                     <div class="card-tools">
                         <span class="tool-tag">n8n</span>
                         <span class="tool-tag">Vapi</span>
@@ -213,7 +477,7 @@
                 <div class="featured-card animate-fade-up" style="--delay: 0.2s">
                     <div class="featured-number">02</div>
                     <h3>Shopify Store Automation</h3>
-                    <p>Order/customer management with auto-tagging, validation, Google Sheets logging, and daily email reports.</p>
+                    <p>Full order and customer management — auto-tagging, duplicate checks, Google Sheets logging, and daily summary emails.</p>
                     <div class="card-tools">
                         <span class="tool-tag">n8n</span>
                         <span class="tool-tag">Shopify</span>
@@ -224,7 +488,7 @@
                 <div class="featured-card animate-fade-up" style="--delay: 0.3s">
                     <div class="featured-number">03</div>
                     <h3>Multi-Agent Social Scraper</h3>
-                    <p>Instagram & TikTok scraping with Apify, video transcription, and AI-generated viral content ideas.</p>
+                    <p>Scrapes top Instagram & TikTok posts with Apify, transcribes videos, and generates fresh content ideas using OpenAI.</p>
                     <div class="card-tools">
                         <span class="tool-tag">n8n</span>
                         <span class="tool-tag">Apify</span>
@@ -249,7 +513,7 @@
         <div class="container">
             <div class="cta-content animate-fade-up">
                 <h2>Ready to automate your workflow?</h2>
-                <p>Let's discuss how I can help streamline your processes and build intelligent solutions.</p>
+                <p>Let's talk about what's slowing you down — and how to fix it.</p>
                 <a href="contact.html" class="btn btn-primary btn-large">
                     <span>Let's Talk</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -310,5 +574,23 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+
+    <script>
+        /* ================================================
+           MARQUEE — duplicate items for seamless infinite loop
+        ================================================ */
+        (function () {
+            const track = document.getElementById('marqueeTrack');
+            if (!track) return;
+
+            // Clone all children and append — creates the seamless loop
+            const items = Array.from(track.children);
+            items.forEach(function (item) {
+                const clone = item.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                track.appendChild(clone);
+            });
+        })();
+    </script>
 </body>
 </html>
