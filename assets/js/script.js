@@ -24,11 +24,7 @@ function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.pageYOffset > 50);
     }, { passive: true });
 }
 
@@ -38,28 +34,37 @@ function initNavbarScroll() {
 // ==========================================
 function initMobileNav() {
     const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
+    const navLinks  = document.getElementById('navLinks');
     if (!navToggle || !navLinks) return;
+
+    function closeMenu() {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
     navToggle.addEventListener('click', () => {
         const isActive = navToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+        navLinks.classList.toggle('active', isActive);
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
+    // Close on any nav link click
     navLinks.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
     });
 
+    // Close on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-            navToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.style.overflow = '';
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close when clicking outside the nav
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) &&
+            !navToggle.contains(e.target)) {
+            closeMenu();
         }
     });
 }
@@ -69,8 +74,8 @@ function initMobileNav() {
 // 3. TYPING EFFECT
 // ==========================================
 function initTypingEffect() {
-    const typedTextElement = document.getElementById('typedText');
-    if (!typedTextElement) return;
+    const el = document.getElementById('typedText');
+    if (!el) return;
 
     const phrases = [
         'n8n automation workflows',
@@ -87,30 +92,30 @@ function initTypingEffect() {
         'gym fitness analyzers'
     ];
 
-    let phraseIndex = 0, charIndex = 0, isDeleting = false, speed = 80;
+    let phraseIndex = 0, charIndex = 0, isDeleting = false;
 
     function type() {
         const phrase = phrases[phraseIndex];
-        if (isDeleting) {
-            typedTextElement.textContent = phrase.substring(0, charIndex - 1);
-            charIndex--;
-            speed = 40;
-        } else {
-            typedTextElement.textContent = phrase.substring(0, charIndex + 1);
-            charIndex++;
-            speed = 80;
-        }
+        el.textContent = isDeleting
+            ? phrase.substring(0, charIndex - 1)
+            : phrase.substring(0, charIndex + 1);
+
+        isDeleting ? charIndex-- : charIndex++;
+
+        let speed = isDeleting ? 40 : 80;
+
         if (!isDeleting && charIndex === phrase.length) {
             isDeleting = true;
             speed = 2000;
-        }
-        if (isDeleting && charIndex === 0) {
+        } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
             speed = 500;
         }
+
         setTimeout(type, speed);
     }
+
     setTimeout(type, 1000);
 }
 
@@ -120,12 +125,13 @@ function initTypingEffect() {
 // ==========================================
 function initCounterAnimation() {
     const counters = document.querySelectorAll('.stat-number[data-count]');
-    if (counters.length === 0) return;
+    if (!counters.length) return;
 
     const animate = (el) => {
-        const target = parseInt(el.getAttribute('data-count'));
+        const target = parseInt(el.getAttribute('data-count'), 10);
         const duration = 2000;
         const start = performance.now();
+
         function update(now) {
             const progress = Math.min((now - start) / duration, 1);
             const ease = 1 - Math.pow(1 - progress, 3);
@@ -135,6 +141,8 @@ function initCounterAnimation() {
         requestAnimationFrame(update);
     };
 
+    // BUG FIX: threshold 0 + check isIntersecting immediately
+    // so counters already visible on load still animate
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -142,7 +150,8 @@ function initCounterAnimation() {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0, rootMargin: '0px' });
+
     counters.forEach(c => observer.observe(c));
 }
 
@@ -152,7 +161,8 @@ function initCounterAnimation() {
 // ==========================================
 function initScrollAnimations() {
     const els = document.querySelectorAll('.animate-fade-up');
-    if (els.length === 0) return;
+    if (!els.length) return;
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -161,6 +171,7 @@ function initScrollAnimations() {
             }
         });
     }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+
     els.forEach(el => observer.observe(el));
 }
 
@@ -170,15 +181,18 @@ function initScrollAnimations() {
 // ==========================================
 function initSkillBars() {
     const bars = document.querySelectorAll('.skill-progress');
-    if (bars.length === 0) return;
+    if (!bars.length) return;
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.width = entry.target.getAttribute('data-width') + '%';
+                const width = entry.target.getAttribute('data-width');
+                if (width) entry.target.style.width = width + '%';
                 observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.3 });
+
     bars.forEach(bar => observer.observe(bar));
 }
 
@@ -187,33 +201,37 @@ function initSkillBars() {
 // 7. PROJECT FILTERS
 // ==========================================
 function initProjectFilters() {
-    const btns = document.querySelectorAll('.filter-btn');
+    const btns  = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.project-card');
-    if (btns.length === 0 || cards.length === 0) return;
+    if (!btns.length || !cards.length) return;
 
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             const filter = btn.getAttribute('data-filter');
             let idx = 0;
 
             cards.forEach(card => {
                 const cat = card.getAttribute('data-category');
-                if (filter === 'all' || cat === filter) {
+                const show = filter === 'all' || cat === filter;
+
+                if (show) {
                     card.classList.remove('hidden');
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
-                    const delay = idx * 80;
+
                     setTimeout(() => {
                         card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
-                    }, 50 + delay);
+                    }, 50 + idx * 80);
                     idx++;
                 } else {
                     card.classList.add('hidden');
                     card.classList.remove('expanded');
+
                     const rb = card.querySelector('.read-more-btn');
                     if (rb) {
                         rb.classList.remove('expanded');
@@ -222,7 +240,9 @@ function initProjectFilters() {
                     }
                 }
             });
-            setTimeout(checkReadMoreVisibility, 200);
+
+            // BUG FIX: use rAF instead of fragile setTimeout for visibility check
+            requestAnimationFrame(checkReadMoreVisibility);
         });
     });
 }
@@ -233,7 +253,7 @@ function initProjectFilters() {
 // ==========================================
 function initReadMore() {
     const btns = document.querySelectorAll('.read-more-btn');
-    if (btns.length === 0) return;
+    if (!btns.length) return;
 
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -241,34 +261,31 @@ function initReadMore() {
             const span = btn.querySelector('span');
             if (!card) return;
 
-            if (card.classList.contains('expanded')) {
-                card.classList.remove('expanded');
-                btn.classList.remove('expanded');
-                if (span) span.textContent = 'Read More';
+            const isExpanded = card.classList.toggle('expanded');
+            btn.classList.toggle('expanded', isExpanded);
+            if (span) span.textContent = isExpanded ? 'Read Less' : 'Read More';
+
+            if (!isExpanded) {
                 setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-            } else {
-                card.classList.add('expanded');
-                btn.classList.add('expanded');
-                if (span) span.textContent = 'Read Less';
             }
         });
     });
 
-    setTimeout(checkReadMoreVisibility, 300);
+    // BUG FIX: rAF ensures DOM has painted before measuring scrollHeight
+    requestAnimationFrame(checkReadMoreVisibility);
     window.addEventListener('resize', debounce(checkReadMoreVisibility, 250));
 }
 
 function checkReadMoreVisibility() {
     document.querySelectorAll('.project-card:not(.hidden)').forEach(card => {
         const desc = card.querySelector('.project-description');
-        const btn = card.querySelector('.read-more-btn');
+        const btn  = card.querySelector('.read-more-btn');
         if (!desc || !btn) return;
 
-        if (!card.classList.contains('expanded')) {
-            btn.style.display = (desc.scrollHeight > desc.clientHeight + 2) ? 'inline-flex' : 'none';
-        } else {
-            btn.style.display = 'inline-flex';
-        }
+        btn.style.display = (card.classList.contains('expanded') ||
+            desc.scrollHeight > desc.clientHeight + 2)
+            ? 'inline-flex'
+            : 'none';
     });
 }
 
@@ -276,158 +293,19 @@ function checkReadMoreVisibility() {
 // ==========================================
 // 9. CONTACT FORM — EMAILJS INTEGRATION
 // ==========================================
-/**
- * ╔══════════════════════════════════════════════════════╗
- * ║  REPLACE THESE 3 VALUES WITH YOUR EMAILJS KEYS     ║
- * ║                                                      ║
- * ║  1. Go to emailjs.com → Account → Public Key        ║
- * ║  2. Go to Email Services → Your Service ID          ║
- * ║  3. Go to Email Templates → Your Template ID        ║
- * ╚══════════════════════════════════════════════════════╝
- */
-const EMAILJS_PUBLIC_KEY = "2Z7VhVEFpb-D2BPS_";       // ← Replace this
-const EMAILJS_SERVICE_ID = "service_d7u2hvf";       // ← Replace this
-const EMAILJS_TEMPLATE_ID = "template_xcdvq4b";     // ← Replace this
-
+const EMAILJS_PUBLIC_KEY   = "2Z7VhVEFpb-D2BPS_";
+const EMAILJS_SERVICE_ID   = "service_d7u2hvf";
+const EMAILJS_TEMPLATE_ID  = "template_xcdvq4b";
 
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
 
-    // Initialize EmailJS with your public key
-    // Only initialize if emailjs is loaded (contact page only)
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_PUBLIC_KEY);
     }
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get all form field elements
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const subjectInput = document.getElementById('subject');
-        const messageInput = document.getElementById('message');
-        const submitBtn = document.getElementById('submitBtn');
-        const formSuccess = document.getElementById('formSuccess');
-
-        // Clear any previous error states
-        clearErrors();
-
-        // ---- VALIDATION ----
-        let isValid = true;
-
-        // Check name is not empty
-        if (!nameInput.value.trim()) {
-            showError('name');
-            isValid = false;
-        }
-
-        // Check email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
-            showError('email');
-            isValid = false;
-        }
-
-        // Check subject is selected
-        if (!subjectInput.value) {
-            showError('subject');
-            isValid = false;
-        }
-
-        // Check message is not empty
-        if (!messageInput.value.trim()) {
-            showError('message');
-            isValid = false;
-        }
-
-        // ---- IF VALID, SEND EMAIL ----
-        if (isValid) {
-            // Show loading state on button
-            const btnText = submitBtn.querySelector('.btn-text');
-            const btnLoading = submitBtn.querySelector('.btn-loading');
-            const btnArrow = submitBtn.querySelector('.btn-arrow');
-
-            if (btnText) btnText.style.display = 'none';
-            if (btnArrow) btnArrow.style.display = 'none';
-            if (btnLoading) btnLoading.style.display = 'inline-flex';
-            submitBtn.disabled = true;
-
-            // Prepare the data to send
-            // These variable names MUST match your EmailJS template
-            const templateParams = {
-                from_name: nameInput.value.trim(),
-                from_email: emailInput.value.trim(),
-                subject: subjectInput.value,
-                message: messageInput.value.trim(),
-                to_name: "Usman Naeem"
-            };
-
-            // ====== SEND EMAIL VIA EMAILJS ======
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    // ---- SUCCESS ----
-                    console.log('Email sent successfully!', response.status);
-
-                    // Reset button to normal
-                    if (btnText) btnText.style.display = 'inline';
-                    if (btnArrow) btnArrow.style.display = 'inline';
-                    if (btnLoading) btnLoading.style.display = 'none';
-                    submitBtn.disabled = false;
-
-                    // Show success message
-                    if (formSuccess) formSuccess.style.display = 'flex';
-
-                    // Clear the form
-                    form.reset();
-
-                    // Auto-hide success message after 5 seconds
-                    setTimeout(() => {
-                        if (formSuccess) formSuccess.style.display = 'none';
-                    }, 5000);
-
-                })
-                .catch(function(error) {
-                    // ---- ERROR ----
-                    console.error('Email failed to send:', error);
-
-                    // Reset button
-                    if (btnText) btnText.style.display = 'inline';
-                    if (btnArrow) btnArrow.style.display = 'inline';
-                    if (btnLoading) btnLoading.style.display = 'none';
-                    submitBtn.disabled = false;
-
-                    // Show error to user
-                    alert('Failed to send message. Please try again or email me directly at osmannaeem05@gmail.com');
-                });
-        }
-    });
-
-    /**
-     * Shows error styling on a specific form field
-     */
-    function showError(inputId) {
-        const input = document.getElementById(inputId);
-        if (input) {
-            input.classList.add('error');
-            input.parentElement.classList.add('show-error');
-        }
-    }
-
-    /**
-     * Clears all error states from the form
-     */
-    function clearErrors() {
-        form.querySelectorAll('.form-input').forEach(input => {
-            input.classList.remove('error');
-        });
-        form.querySelectorAll('.form-group').forEach(group => {
-            group.classList.remove('show-error');
-        });
-    }
-
-    // Live error clearing — remove error as user types
+    // Live error clearing as user types
     form.querySelectorAll('.form-input').forEach(input => {
         ['input', 'change'].forEach(eventType => {
             input.addEventListener(eventType, () => {
@@ -436,6 +314,80 @@ function initContactForm() {
             });
         });
     });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput    = document.getElementById('name');
+        const emailInput   = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        const submitBtn    = document.getElementById('submitBtn');
+        const formSuccess  = document.getElementById('formSuccess');
+
+        clearErrors();
+
+        let isValid = true;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!nameInput?.value.trim())                              { showError('name');    isValid = false; }
+        if (!emailInput?.value.trim() || !emailRegex.test(emailInput.value)) { showError('email');   isValid = false; }
+        if (!subjectInput?.value)                                  { showError('subject'); isValid = false; }
+        if (!messageInput?.value.trim())                           { showError('message'); isValid = false; }
+
+        if (!isValid) return;
+
+        // Show loading state
+        const btnText    = submitBtn?.querySelector('.btn-text');
+        const btnLoading = submitBtn?.querySelector('.btn-loading');
+        const btnArrow   = submitBtn?.querySelector('.btn-arrow');
+
+        if (btnText)    btnText.style.display    = 'none';
+        if (btnArrow)   btnArrow.style.display   = 'none';
+        if (btnLoading) btnLoading.style.display = 'inline-flex';
+        if (submitBtn)  submitBtn.disabled = true;
+
+        const resetBtn = () => {
+            if (btnText)    btnText.style.display    = 'inline';
+            if (btnArrow)   btnArrow.style.display   = 'inline';
+            if (btnLoading) btnLoading.style.display = 'none';
+            if (submitBtn)  submitBtn.disabled = false;
+        };
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            from_name:  nameInput.value.trim(),
+            from_email: emailInput.value.trim(),
+            subject:    subjectInput.value,
+            message:    messageInput.value.trim(),
+            to_name:    'Usman Naeem'
+        })
+        .then(() => {
+            resetBtn();
+            if (formSuccess) {
+                formSuccess.style.display = 'flex';
+                setTimeout(() => { formSuccess.style.display = 'none'; }, 5000);
+            }
+            form.reset();
+        })
+        .catch((err) => {
+            console.error('EmailJS error:', err);
+            resetBtn();
+            alert('Failed to send message. Please email me directly at osmannaeem05@gmail.com');
+        });
+    });
+
+    function showError(inputId) {
+        const input = document.getElementById(inputId);
+        if (input) {
+            input.classList.add('error');
+            input.parentElement.classList.add('show-error');
+        }
+    }
+
+    function clearErrors() {
+        form.querySelectorAll('.form-input').forEach(i => i.classList.remove('error'));
+        form.querySelectorAll('.form-group').forEach(g => g.classList.remove('show-error'));
+    }
 }
 
 
@@ -443,8 +395,9 @@ function initContactForm() {
 // 10. FOOTER YEAR
 // ==========================================
 function initFooterYear() {
+    const year = new Date().getFullYear();
     document.querySelectorAll('#currentYear').forEach(el => {
-        el.textContent = new Date().getFullYear();
+        el.textContent = year;
     });
 }
 
@@ -454,7 +407,7 @@ function initFooterYear() {
 // ==========================================
 function debounce(func, wait) {
     let timeout;
-    return function(...args) {
+    return function (...args) {
         clearTimeout(timeout);
         timeout = setTimeout(() => func(...args), wait);
     };
