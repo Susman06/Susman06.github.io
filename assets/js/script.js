@@ -34,41 +34,37 @@ function initNavbarScroll() {
 // ==========================================
 function initMobileNav() {
     const navToggle = document.getElementById('navToggle');
-    const navLinks  = document.getElementById('navLinks');
-    if (!navToggle || !navLinks) return;
+    const mobileMenu = document.querySelector('.mobile-menu'); // ← target mobile-menu, not navLinks
+    if (!navToggle || !mobileMenu) return;
 
     function closeMenu() {
         navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
+        mobileMenu.classList.remove('open'); // ← use 'open', not 'active'
         document.body.style.overflow = '';
     }
 
     navToggle.addEventListener('click', () => {
         const isActive = navToggle.classList.toggle('active');
-        navLinks.classList.toggle('active', isActive);
+        mobileMenu.classList.toggle('open', isActive); // ← use 'open', not 'active'
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
-    // Close on any nav link click
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
+    mobileMenu.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', closeMenu);
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
     });
 
-    // Close when clicking outside the nav
     document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('active') &&
-            !navLinks.contains(e.target) &&
+        if (mobileMenu.classList.contains('open') &&
+            !mobileMenu.contains(e.target) &&
             !navToggle.contains(e.target)) {
             closeMenu();
         }
     });
 }
-
 
 // ==========================================
 // 3. TYPING EFFECT
