@@ -34,18 +34,18 @@ function initNavbarScroll() {
 // ==========================================
 function initMobileNav() {
     const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.querySelector('.mobile-menu'); // ← target mobile-menu, not navLinks
+    const mobileMenu = document.getElementById('mobileMenu');
     if (!navToggle || !mobileMenu) return;
 
     function closeMenu() {
         navToggle.classList.remove('active');
-        mobileMenu.classList.remove('open'); // ← use 'open', not 'active'
+        mobileMenu.classList.remove('open');
         document.body.style.overflow = '';
     }
 
     navToggle.addEventListener('click', () => {
         const isActive = navToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('open', isActive); // ← use 'open', not 'active'
+        mobileMenu.classList.toggle('open', isActive);
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
@@ -65,7 +65,6 @@ function initMobileNav() {
         }
     });
 }
-
 // ==========================================
 // 3. TYPING EFFECT
 // ==========================================
